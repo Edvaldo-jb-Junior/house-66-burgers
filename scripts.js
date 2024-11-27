@@ -4,6 +4,13 @@ const buttonDesconts = document.querySelector(".desconts")
 const buttonTotal = document.querySelector(".ValueTotal")
 const buttonVegan = document.querySelector(".veganMenu")
 
+function formatCurrency(value) {
+  const  newValue = value.toLocaleString('pt-br', { 
+    style: 'currency', 
+    currency: 'BRL' });
+    return newValue
+}
+
 function allMenu(productsArray) {
   let myMenuAll = ""
 
@@ -12,7 +19,7 @@ function allMenu(productsArray) {
     myMenuAll += `<li>
                         <img src=${products.src}>
                         <p>${products.name}</p>
-                        <p class="value">R$ ${products.price}</p>
+                        <p class="value"> ${formatCurrency(products.price)}</p>
                      </li >`
 
   })
@@ -31,8 +38,8 @@ function valueWithDesconts() {
 function somaTotal() {
   const total = menuOptions.reduce((acc, product) => acc + product.price, 0)
 
-list.innerHTML = ` <li>
-                      <p>Valor total dos Produtos R$ ${total}</p>
+  list.innerHTML = ` <li>
+                      <p>Valor total dos Produtos ${formatCurrency(total)}</p>
                     </li >`
 }
 
